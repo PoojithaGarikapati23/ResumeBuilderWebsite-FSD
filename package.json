@@ -1,12 +1,49 @@
 {
-  "name": "hercart-admin",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "careercraft",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "@ai-sdk/openai": "^4.0.71",
+    "@ai-sdk/react": "^4.0.110",
+    "@auth/prisma-adapter": "^2.11.3",
+    "@base-ui/react": "^1.7.0",
+    "@prisma/client": "^5.20.0",
+    "ai": "^7.0.107",
+    "bcryptjs": "^3.0.3",
+    "class-variance-authority": "^0.7.1",
+    "cn": "^0.3.0",
+    "lucide-react": "^1.47.0",
+    "next": "16.3.5",
+    "next-auth": "^4.24.15",
+    "nodemailer": "^7.0.13",
+    "openai": "^7.20.0",
+    "pdf-parse": "^2.4.5",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-dropzone": "^20.1.2",
+    "react-to-print": "^3.3.0",
+    "tailwindcss-animate": "^1.0.7",
+    "uuid": "^14.0.2",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20",
+    "@types/nodemailer": "^8.0.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.5",
+    "prisma": "^5.20.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
 }

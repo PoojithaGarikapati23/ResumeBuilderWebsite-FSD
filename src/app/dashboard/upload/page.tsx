@@ -4,7 +4,7 @@ import { useDropzone } from "react-dropzone"
 import { useRouter } from "next/navigation"
 import { useResumeStore } from "@/store/useResumeStore"
 import { Card, CardContent } from "@/components/ui/card"
-import { UploadCloud, FileText, Loader2, ArrowLeft } from "lucide-react"
+import { UploadCloud, Loader2, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 

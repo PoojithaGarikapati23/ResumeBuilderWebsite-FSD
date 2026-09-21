@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { ResumeData, defaultResumeData, Experience, Education, SkillCategory, Project, Certification } from "@/types/resume";
+import { ResumeData, defaultResumeData, Experience, Education, SkillCategory } from "@/types/resume";
 import { v4 as uuidv4 } from "uuid";
 
 interface ResumeStore {

@@ -2,8 +2,9 @@
 import { useState, useEffect } from "react"
 import { useResumeStore } from "@/store/useResumeStore"
 import { Button } from "@/components/ui/button"
-import { Loader2, ArrowLeft, Check, Download } from "lucide-react"
+import { Loader2, ArrowLeft, Check } from "lucide-react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { ResumeData } from "@/types/resume"
 import { ResumePreview } from "@/components/builder/ResumePreview"
 
@@ -15,6 +16,7 @@ export default function TailorPage() {
   const [tailoredResume, setTailoredResume] = useState<ResumeData | null>(null)
   const [isTailoring, setIsTailoring] = useState(true)
   const [error, setError] = useState("")
+  const router = useRouter()
 
   useEffect(() => {
     // Simulate tailoring process since we don't have jdData passed directly in this simple flow
@@ -49,7 +51,7 @@ export default function TailorPage() {
   const acceptChanges = () => {
     if (tailoredResume) {
       setResumeData(tailoredResume)
-      window.location.href = "/builder"
+      router.push("/builder")
     }
   }
 

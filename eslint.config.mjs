@@ -3,6 +3,15 @@ import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
 
 const eslintConfig = defineConfig([
+  {
+    ignores: [
+      "client/**",
+      "server/**",
+      "node_modules/**",
+      ".next/**",
+      "dist/**"
+    ]
+  },
   ...nextVitals,
   ...nextTs,
   {

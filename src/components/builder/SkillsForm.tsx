@@ -25,7 +25,7 @@ export function SkillsForm() {
         </div>
       </CardHeader>
       <CardContent className="px-0 space-y-6">
-        {data.skills.map((cat, index) => (
+        {data.skills.map((cat) => (
           <div key={cat.id} className="relative bg-card border border-border p-5 rounded-xl space-y-4 shadow-sm group">
             <div className="absolute top-4 right-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
               <Button variant="ghost" size="icon" className="h-8 w-8 cursor-grab">

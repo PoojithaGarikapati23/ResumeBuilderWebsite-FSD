@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { FileText, Plus, Upload, Briefcase, Activity } from "lucide-react"
+import { Plus, Upload, Briefcase, Activity } from "lucide-react"
 
 export default function DashboardPage() {
   return (

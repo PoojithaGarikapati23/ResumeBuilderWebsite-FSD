@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { parseResumeText } from "@/lib/ai/resumeParser";
+
+export const runtime = "nodejs";
+
 export async function POST(req: NextRequest) {
-  const pdfParse = require("pdf-parse");
   try {
     const formData = await req.formData();
     const file = formData.get("file") as File;
@@ -18,9 +20,17 @@ export async function POST(req: NextRequest) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    // Parse text from PDF
-    const data = await pdfParse(buffer);
-    const rawText = data.text;
+    // Parse text from PDF using pdf2json
+    const PDFParser = (await import("pdf2json")).default;
+    const pdfParser = new PDFParser(null, true); // true = raw text content
+
+    const rawText = await new Promise<string>((resolve, reject) => {
+      pdfParser.on("pdfParser_dataError", (errData: any) => reject(errData.parserError));
+      pdfParser.on("pdfParser_dataReady", () => {
+        resolve(pdfParser.getRawTextContent());
+      });
+      pdfParser.parseBuffer(buffer);
+    });
 
     if (!rawText || rawText.trim().length === 0) {
       return NextResponse.json({ error: "Could not extract text from the PDF" }, { status: 400 });

@@ -1,0 +1,8 @@
+{
+  "search.exclude": {
+    "**/.next": true,
+    "**/node_modules": true,
+    "**/dist": true
+  },
+  "eslint.workingDirectories": ["./"]
+}

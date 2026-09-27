@@ -1,6 +1,12 @@
-"use client"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Users, FileText, Briefcase, Activity, Target } from "lucide-react"
+"use client";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Users, FileText, Briefcase, Activity, Target } from "lucide-react";
 
 export default function AdminDashboard() {
   return (
@@ -8,7 +14,9 @@ export default function AdminDashboard() {
       <div className="max-w-6xl mx-auto space-y-8">
         <div>
           <h1 className="text-3xl font-bold font-heading">Admin Overview</h1>
-          <p className="text-muted-foreground mt-1">Platform analytics and system health.</p>
+          <p className="text-muted-foreground mt-1">
+            Platform analytics and system health.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -18,10 +26,17 @@ export default function AdminDashboard() {
                 <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
                   <Users className="w-5 h-5 text-primary" />
                 </div>
-                <Badge variant="outline" className="bg-emerald-500/10 text-emerald-700 border-none">+12%</Badge>
+                <Badge
+                  variant="outline"
+                  className="bg-emerald-500/10 text-emerald-700 border-none"
+                >
+                  +12%
+                </Badge>
               </div>
               <div className="text-3xl font-bold font-heading">1,248</div>
-              <div className="text-sm font-medium text-muted-foreground mt-1 uppercase tracking-wider">Total Users</div>
+              <div className="text-sm font-medium text-muted-foreground mt-1 uppercase tracking-wider">
+                Total Users
+              </div>
             </CardContent>
           </Card>
           <Card>
@@ -30,10 +45,17 @@ export default function AdminDashboard() {
                 <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
                   <FileText className="w-5 h-5 text-foreground" />
                 </div>
-                <Badge variant="outline" className="bg-emerald-500/10 text-emerald-700 border-none">+34%</Badge>
+                <Badge
+                  variant="outline"
+                  className="bg-emerald-500/10 text-emerald-700 border-none"
+                >
+                  +34%
+                </Badge>
               </div>
               <div className="text-3xl font-bold font-heading">4,892</div>
-              <div className="text-sm font-medium text-muted-foreground mt-1 uppercase tracking-wider">Resumes Generated</div>
+              <div className="text-sm font-medium text-muted-foreground mt-1 uppercase tracking-wider">
+                Resumes Generated
+              </div>
             </CardContent>
           </Card>
           <Card>
@@ -44,7 +66,9 @@ export default function AdminDashboard() {
                 </div>
               </div>
               <div className="text-3xl font-bold font-heading">8,211</div>
-              <div className="text-sm font-medium text-muted-foreground mt-1 uppercase tracking-wider">Job Analyses</div>
+              <div className="text-sm font-medium text-muted-foreground mt-1 uppercase tracking-wider">
+                Job Analyses
+              </div>
             </CardContent>
           </Card>
           <Card>
@@ -55,7 +79,9 @@ export default function AdminDashboard() {
                 </div>
               </div>
               <div className="text-3xl font-bold font-heading">82%</div>
-              <div className="text-sm font-medium text-muted-foreground mt-1 uppercase tracking-wider">Avg ATS Match</div>
+              <div className="text-sm font-medium text-muted-foreground mt-1 uppercase tracking-wider">
+                Avg ATS Match
+              </div>
             </CardContent>
           </Card>
         </div>
@@ -64,18 +90,27 @@ export default function AdminDashboard() {
           <Card className="md:col-span-2">
             <CardHeader>
               <CardTitle>System Activity</CardTitle>
-              <CardDescription>Recent actions across the platform.</CardDescription>
+              <CardDescription>
+                Recent actions across the platform.
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {[1, 2, 3, 4, 5].map((i) => (
-                  <div key={i} className="flex items-center gap-4 pb-4 border-b border-border last:border-0 last:pb-0">
+                  <div
+                    key={i}
+                    className="flex items-center gap-4 pb-4 border-b border-border last:border-0 last:pb-0"
+                  >
                     <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center shrink-0">
                       <Activity className="w-4 h-4" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium">User {i * 123} tailored a resume for "Product Manager"</p>
-                      <p className="text-xs text-muted-foreground">{i * 2} minutes ago</p>
+                      <p className="text-sm font-medium">
+                        User {i * 123} tailored a resume for "Product Manager"
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {i * 2} minutes ago
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -119,7 +154,7 @@ export default function AdminDashboard() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge";

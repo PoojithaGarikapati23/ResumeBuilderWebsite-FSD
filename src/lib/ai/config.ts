@@ -1,4 +1,4 @@
-import OpenAI from 'openai';
+import OpenAI from "openai";
 
 // Ensure you have OPENAI_API_KEY in your .env file
 export const openai = new OpenAI({

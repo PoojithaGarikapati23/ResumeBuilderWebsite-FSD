@@ -8,7 +8,10 @@ export async function POST(req: NextRequest) {
     const { resumeData }: { resumeData: ResumeData } = body;
 
     if (!resumeData) {
-      return NextResponse.json({ error: "Missing Resume data" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing Resume data" },
+        { status: 400 },
+      );
     }
 
     const roles = await matchCareers(resumeData);
@@ -16,6 +19,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true, roles });
   } catch (error: any) {
     console.error("Career Match API Error:", error);
-    return NextResponse.json({ error: error.message || "Failed to find career matches" }, { status: 500 });
+    return NextResponse.json(
+      { error: error.message || "Failed to find career matches" },
+      { status: 500 },
+    );
   }
 }

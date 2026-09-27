@@ -21,22 +21,32 @@ const JD_JSON_SCHEMA = {
     educationLevel: { type: "string" },
     keyResponsibilities: { type: "array", items: { type: "string" } },
   },
-  required: ["title", "requiredSkills", "preferredSkills", "experienceLevel", "educationLevel", "keyResponsibilities"]
+  required: [
+    "title",
+    "requiredSkills",
+    "preferredSkills",
+    "experienceLevel",
+    "educationLevel",
+    "keyResponsibilities",
+  ],
 };
 
-export async function parseJobDescription(rawText: string): Promise<JobDescriptionData> {
+export async function parseJobDescription(
+  rawText: string,
+): Promise<JobDescriptionData> {
   try {
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
         {
           role: "system",
-          content: "You are an expert HR analyst. Extract the structured requirements from the provided job description. Be precise and exhaustive with the skills."
+          content:
+            "You are an expert HR analyst. Extract the structured requirements from the provided job description. Be precise and exhaustive with the skills.",
         },
         {
           role: "user",
-          content: `Job Description:\n\n${rawText}`
-        }
+          content: `Job Description:\n\n${rawText}`,
+        },
       ],
       functions: [{ name: "extract_jd", parameters: JD_JSON_SCHEMA }],
       function_call: { name: "extract_jd" },

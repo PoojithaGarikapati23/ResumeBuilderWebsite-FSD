@@ -1,53 +1,122 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ArrowUpRight, Menu } from "lucide-react";
+import { useState } from "react";
 
 export function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
-    <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+    <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+      <header className="w-full max-w-5xl bg-white/70 backdrop-blur-xl border border-white/50 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.05)] rounded-full px-6 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-            <svg
-              className="w-5 h-5 text-primary-foreground"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M13 10V3L4 14h7v7l9-11h-7z"
-              />
-            </svg>
-          </div>
-          <span className="font-heading font-bold text-xl tracking-tight">
+          <span className="text-xl">🌸</span>
+          <span className="font-heading font-bold text-lg tracking-tight text-slate-900">
             CareerCraft AI
           </span>
         </div>
-        
-        <nav className="hidden md:flex items-center gap-6">
-          <Link href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-            Features
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8">
+          <Link
+            href="/"
+            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+          >
+            Home
           </Link>
-          <Link href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-            How it works
+          <Link
+            href="/builder"
+            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+          >
+            Resume Builder
           </Link>
-          <Link href="#pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-            Pricing
+          <Link
+            href="/dashboard/jobs/analyze"
+            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+          >
+            ATS Checker
+          </Link>
+          <Link
+            href="/dashboard/career"
+            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+          >
+            AI Assistant
+          </Link>
+          <Link
+            href="/dashboard"
+            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+          >
+            Dashboard
           </Link>
         </nav>
 
-        <div className="flex items-center gap-4">
-          <Link href="/login">
-            <Button variant="ghost" className="hidden sm:inline-flex">Sign In</Button>
-          </Link>
+        {/* Action Button */}
+        <div className="hidden md:flex items-center gap-4">
           <Link href="/register">
-            <Button>Get Started</Button>
+            <Button className="rounded-full bg-slate-900 hover:bg-slate-800 text-white h-10 px-6 font-medium group transition-all">
+              Get Started
+              <ArrowUpRight className="ml-1 w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Button>
           </Link>
         </div>
-      </div>
-    </header>
+
+        {/* Mobile Hamburger */}
+        <button
+          className="md:hidden p-2 text-slate-600 hover:text-slate-900 transition-colors"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <Menu className="w-6 h-6" />
+        </button>
+      </header>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="absolute top-20 left-4 right-4 bg-white/90 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-3xl p-6 flex flex-col gap-4 md:hidden animate-in slide-in-from-top-4">
+          <Link
+            href="/"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-base font-medium text-slate-700 hover:text-slate-900 p-2"
+          >
+            Home
+          </Link>
+          <Link
+            href="/builder"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-base font-medium text-slate-700 hover:text-slate-900 p-2"
+          >
+            Resume Builder
+          </Link>
+          <Link
+            href="/dashboard/jobs/analyze"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-base font-medium text-slate-700 hover:text-slate-900 p-2"
+          >
+            ATS Checker
+          </Link>
+          <Link
+            href="/dashboard/career"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-base font-medium text-slate-700 hover:text-slate-900 p-2"
+          >
+            AI Assistant
+          </Link>
+          <Link
+            href="/dashboard"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-base font-medium text-slate-700 hover:text-slate-900 p-2"
+          >
+            Dashboard
+          </Link>
+          <div className="h-px bg-slate-200 my-2" />
+          <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}>
+            <Button className="w-full rounded-full bg-slate-900 hover:bg-slate-800 text-white h-12 font-medium">
+              Get Started <ArrowUpRight className="ml-2 w-4 h-4" />
+            </Button>
+          </Link>
+        </div>
+      )}
+    </div>
   );
 }

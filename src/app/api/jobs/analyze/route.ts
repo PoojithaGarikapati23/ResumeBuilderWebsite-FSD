@@ -6,13 +6,26 @@ import { ResumeData } from "@/types/resume";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { rawJdText, resumeData }: { rawJdText: string; resumeData: ResumeData } = body;
+    const {
+      rawJdText,
+      resumeData,
+    }: { rawJdText: string; resumeData: ResumeData } = body;
 
     if (!rawJdText || !resumeData) {
-      return NextResponse.json({ error: "Missing JD text or Resume data" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing JD text or Resume data" },
+        { status: 400 },
+      );
     }
 
     // 1. Parse JD
+    if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === "dummy-key-for-build") {
+      return NextResponse.json(
+        { error: "OPENAI_API_KEY is missing or invalid. Please configure it in your .env file." },
+        { status: 500 },
+      );
+    }
+
     const jd = await parseJobDescription(rawJdText);
 
     // 2. Analyze Resume vs JD
@@ -21,6 +34,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true, jd, analysis });
   } catch (error: any) {
     console.error("ATS API Error:", error);
-    return NextResponse.json({ error: error.message || "Failed to analyze job" }, { status: 500 });
+    return NextResponse.json(
+      { error: error.message || "Failed to analyze job" },
+      { status: 500 },
+    );
   }
 }

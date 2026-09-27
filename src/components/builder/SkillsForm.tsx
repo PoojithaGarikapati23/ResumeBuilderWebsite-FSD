@@ -1,14 +1,21 @@
-"use client"
-import { useResumeStore } from "@/store/useResumeStore"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
-import { Plus, Trash2, GripVertical } from "lucide-react"
+"use client";
+import { useResumeStore } from "@/store/useResumeStore";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Plus, Trash2, GripVertical } from "lucide-react";
 
 export function SkillsForm() {
-  const { data, addSkillCategory, updateSkillCategory, removeSkillCategory } = useResumeStore()
+  const { data, addSkillCategory, updateSkillCategory, removeSkillCategory } =
+    useResumeStore();
 
   return (
     <Card className="border-none shadow-none bg-transparent">
@@ -26,26 +33,51 @@ export function SkillsForm() {
       </CardHeader>
       <CardContent className="px-0 space-y-6">
         {data.skills.map((cat) => (
-          <div key={cat.id} className="relative bg-card border border-border p-5 rounded-xl space-y-4 shadow-sm group">
+          <div
+            key={cat.id}
+            className="relative bg-card border border-border p-5 rounded-xl space-y-4 shadow-sm group"
+          >
             <div className="absolute top-4 right-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-              <Button variant="ghost" size="icon" className="h-8 w-8 cursor-grab">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 cursor-grab"
+              >
                 <GripVertical className="w-4 h-4 text-muted-foreground" />
               </Button>
-              <Button onClick={() => removeSkillCategory(cat.id)} variant="ghost" size="icon" className="h-8 w-8 text-destructive hover:text-destructive hover:bg-destructive/10">
+              <Button
+                onClick={() => removeSkillCategory(cat.id)}
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 text-destructive hover:text-destructive hover:bg-destructive/10"
+              >
                 <Trash2 className="w-4 h-4" />
               </Button>
             </div>
-            
+
             <div className="space-y-2 pt-2 pr-20">
               <Label>Category Name</Label>
-              <Input value={cat.name} onChange={(e) => updateSkillCategory(cat.id, { name: e.target.value })} placeholder="Programming Languages" />
+              <Input
+                value={cat.name}
+                onChange={(e) =>
+                  updateSkillCategory(cat.id, { name: e.target.value })
+                }
+                placeholder="Programming Languages"
+              />
             </div>
-            
+
             <div className="space-y-2">
               <Label>Skills (Comma separated)</Label>
-              <Textarea 
+              <Textarea
                 value={cat.skills.join(", ")}
-                onChange={(e) => updateSkillCategory(cat.id, { skills: e.target.value.split(",").map(s => s.trim()).filter(Boolean) })}
+                onChange={(e) =>
+                  updateSkillCategory(cat.id, {
+                    skills: e.target.value
+                      .split(",")
+                      .map((s) => s.trim())
+                      .filter(Boolean),
+                  })
+                }
                 placeholder="Python, TypeScript, SQL, React"
                 className="min-h-[80px]"
               />
@@ -59,5 +91,5 @@ export function SkillsForm() {
         )}
       </CardContent>
     </Card>
-  )
+  );
 }

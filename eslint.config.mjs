@@ -9,8 +9,8 @@ const eslintConfig = defineConfig([
       "server/**",
       "node_modules/**",
       ".next/**",
-      "dist/**"
-    ]
+      "dist/**",
+    ],
   },
   ...nextVitals,
   ...nextTs,
@@ -20,8 +20,8 @@ const eslintConfig = defineConfig([
       "react/no-unescaped-entities": "off",
       "@typescript-eslint/no-require-imports": "off",
       "@typescript-eslint/no-unused-vars": "warn",
-      "@next/next/no-location-assign-relative-destination": "warn"
-    }
+      "@next/next/no-location-assign-relative-destination": "warn",
+    },
   },
   // Override default ignores of eslint-config-next.
   globalIgnores([

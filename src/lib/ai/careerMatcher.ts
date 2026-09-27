@@ -24,11 +24,11 @@ const CAREER_MATCH_SCHEMA = {
           missingSkills: { type: "array", items: { type: "string" } },
           suggestedLearningPath: { type: "string" },
           resumeImprovements: { type: "string" },
-        }
-      }
-    }
+        },
+      },
+    },
   },
-  required: ["roles"]
+  required: ["roles"],
 };
 
 export async function matchCareers(resume: ResumeData): Promise<CareerRole[]> {
@@ -36,8 +36,11 @@ export async function matchCareers(resume: ResumeData): Promise<CareerRole[]> {
     const resumeString = JSON.stringify({
       title: resume.personalInfo.jobTitle,
       summary: resume.summary,
-      skills: resume.skills.map(s => s.skills).flat(),
-      experience: resume.experience.map(e => ({ pos: e.position, desc: e.description })),
+      skills: resume.skills.map((s) => s.skills).flat(),
+      experience: resume.experience.map((e) => ({
+        pos: e.position,
+        desc: e.description,
+      })),
     });
 
     const response = await openai.chat.completions.create({
@@ -45,12 +48,13 @@ export async function matchCareers(resume: ResumeData): Promise<CareerRole[]> {
       messages: [
         {
           role: "system",
-          content: "You are an expert career counselor. Analyze the provided resume data and suggest 3-5 job roles the candidate is suitable for. Categorize match level as Strong, Partial, or Low. Be realistic and constructive."
+          content:
+            "You are an expert career counselor. Analyze the provided resume data and suggest 3-5 job roles the candidate is suitable for. Categorize match level as Strong, Partial, or Low. Be realistic and constructive.",
         },
         {
           role: "user",
-          content: `RESUME:\n${resumeString}`
-        }
+          content: `RESUME:\n${resumeString}`,
+        },
       ],
       functions: [{ name: "match_careers", parameters: CAREER_MATCH_SCHEMA }],
       function_call: { name: "match_careers" },

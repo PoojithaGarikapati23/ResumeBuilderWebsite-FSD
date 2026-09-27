@@ -15,7 +15,8 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: "CareerCraft AI | Your AI Career Assistant",
-  description: "Build, optimize, and tailor your resume with AI. Compare against jobs and land your dream role.",
+  description:
+    "Build, optimize, and tailor your resume with AI. Compare against jobs and land your dream role.",
 };
 
 export default function RootLayout({
@@ -24,7 +25,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable} dark antialiased h-full`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${outfit.variable} dark antialiased h-full`}
+    >
       <body className="min-h-full flex flex-col font-sans">
         {children}
         <HelpdeskChat />
